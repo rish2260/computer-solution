@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Solution - Premium Computer Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+  
+<body>
+    <!-- Animated 3D Background -->
+    <div class="animated-bg">
+        <canvas id="bg-canvas"></canvas>
+        <div class="bg-overlay"></div>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <div class="whatsapp-float" id="whatsapp-btn">
+        <i class="fab fa-whatsapp"></i>
+    </div>
+
+    <!-- AI Chat Bot -->
+    <div class="chatbot-container" id="chatbot">
+        <div class="chatbot-header">
+            <i class="fas fa-robot"></i>
+            <span>Computer Solution AI Assistant</span>
+            <button class="close-chat" id="close-chat">&times;</button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="bot-message">
+                <p>Hello! Welcome to Computer Solution! I'm your AI assistant. How can I help you with computers today?</p>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chat-input" placeholder="Type your question...">
+            <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Chat Bot Toggle -->
+    <div class="chatbot-toggle" id="chatbot-toggle">
+        <i class="fas fa-comment"></i>
+    </div>
+
+    <!-- Main Content Wrapper -->
+    <main style="flex: 1;">
+    
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2><i class="fas fa-desktop"></i> Computer Solution</h2>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#products" class="nav-link">Products</a></li>
+                <li class="nav-item"><a href="#bulk-orders" class="nav-link">Bulk Orders</a></li>
+                <li class="nav-item"><a href="#blog" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="admin/login.html" class="nav-link admin-link">Admin</a></li>
+            </ul>
+            <div class="hamburger" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to <span class="gradient-text">Computer Solution</span></h1>
+            <p class="hero-subtitle">Your Ultimate Destination for Premium Computing Solutions</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="scrollToSection('products')">
+                    <i class="fas fa-shopping-cart"></i> Explore Products
+                </button>
+                <button class="btn-secondary" onclick="scrollToSection('bulk-orders')">
+                    <i class="fas fa-boxes"></i> Bulk Orders
+                </button>
+            </div>
+        </div>
+        <div class="floating-elements">
+            <div class="floating-icon cpu"><i class="fas fa-microchip"></i></div>
+            <div class="floating-icon gpu"><i class="fas fa-memory"></i></div>
+            <div class="floating-icon storage"><i class="fas fa-hdd"></i></div>
+            <div class="floating-icon monitor"><i class="fas fa-desktop"></i></div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <h2 class="section-title">Our Premium Products</h2>
+            <div class="products-grid">
+                <!-- Desktop Computers -->
+                <div class="product-category">
+                    <div class="category-header">
+                        <i class="fas fa-desktop"></i>
+                        <h3>Desktop Computers</h3>
+                    </div>
+                    <div class="products-row">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=300&h=200&fit=crop" alt="Gaming Desktop Pro" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Gaming Desktop Pro</h4>
+                                <p>Intel i7-12700F, RTX 4060 Ti, 16GB RAM, 1TB SSD</p>
+                                <div class="product-price">₹85,999</div>
+                                <button class="btn-add-cart">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1593640408182-31c5bf3ac939?w=300&h=200&fit=crop" alt="Workstation Elite" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Workstation Elite</h4>
+                                <p>AMD Ryzen 9 7950X, RTX 4080, 32GB RAM, 2TB SSD</p>
+                                <div class="product-price">₹1,25,999</div>
+                                <button class="btn-add-cart">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Components -->
+                <div class="product-category">
+                    <div class="category-header">
+                        <i class="fas fa-microchip"></i>
+                        <h3>Components</h3>
+                    </div>
+                    <div class="products-row">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1555617981-dac3880eac6e?w=300&h=200&fit=crop" alt="Intel Core i9 Processor" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Intel Core i9-13900K</h4>
+                                <p>24 Cores, 32 Threads, Up to 5.8 GHz, LGA1700</p>
+                                <p style="text-decoration: line-through; color: #888;">₹52,999</p>
+                                <div class="product-price">₹45,999 <span style="font-size: 0.8rem; color: #10B981;">(-13%)</span></div>
+                                <button class="btn-add-cart">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?w=300&h=200&fit=crop" alt="RTX 4090 Graphics Card" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                            </div>
+                            <div class="product-info">
+                                <h4>NVIDIA RTX 4090</h4>
+                                <p>24GB GDDR6X, 16384 CUDA Cores, 4K Gaming Ready</p>
+                                <p style="text-decoration: line-through; color: #888;">₹2,15,999</p>
+                                <div class="product-price">₹1,89,999 <span style="font-size: 0.8rem; color: #10B981;">(-12%)</span></div>
+                                <button class="btn-add-cart">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Storage & Memory -->
+                <div class="product-category">
+                    <div class="category-header">
+                        <i class="fas fa-hdd"></i>
+                        <h3>Storage & Memory</h3>
+                    </div>
+                    <div class="products-row">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=300&h=200&fit=crop" alt="SanDisk Extreme SSD" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                            </div>
+                            <div class="product-info">
+                                <h4>SanDisk Extreme Portable SSD 1TB</h4>
+                                <p style="text-decoration: line-through; color: #888;">₹21,700</p>
+                                <div class="product-price">₹9,600 <span style="font-size: 0.8rem; color: #10B981;">(-55%)</span></div>
+                                <button class="btn-add-cart">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1562408590-e32931084e23?w=300&h=200&fit=crop" alt="Crucial RAM" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Crucial P3 Plus 1TB NVMe SSD</h4>
+                                <p style="text-decoration: line-through; color: #888;">₹14,900</p>
+                                <div class="product-price">₹5,548 <span style="font-size: 0.8rem; color: #10B981;">(-62%)</span></div>
+                                <button class="btn-add-cart">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Peripherals -->
+                <div class="product-category">
+                    <div class="category-header">
+                        <i class="fas fa-keyboard"></i>
+                        <h3>Peripherals</h3>
+                    </div>
+                    <div class="products-row">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=300&h=200&fit=crop" alt="Mechanical Gaming Keyboard" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Mechanical Gaming Keyboard</h4>
+                                <p>Cherry MX Blue Switches, RGB Backlight, Anti-Ghost</p>
+                                <div class="product-price">₹8,999</div>
+                                <button class="btn-add-cart">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1527814050087-3793815479db?w=300&h=200&fit=crop" alt="Gaming Mouse Pro" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Gaming Mouse Pro</h4>
+                                <p>16000 DPI, 7 Programmable Buttons, RGB Lighting</p>
+                                <div class="product-price">₹4,999</div>
+                                <button class="btn-add-cart">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bulk Orders Section -->
+    <section id="bulk-orders" class="bulk-orders-section">
+        <div class="container">
+            <h2 class="section-title">Bulk Orders & Enterprise Solutions</h2>
+            <div class="bulk-content">
+                <div class="bulk-info">
+                    <h3>Special Pricing for Bulk Orders</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Minimum 10 units for bulk pricing</li>
+                        <li><i class="fas fa-check"></i> Up to 25% discount on large orders</li>
+                        <li><i class="fas fa-check"></i> Free installation and setup</li>
+                        <li><i class="fas fa-check"></i> Extended warranty options</li>
+                        <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                        <li><i class="fas fa-check"></i> Custom configuration available</li>
+                    </ul>
+                </div>
+                <div class="bulk-form">
+                    <form id="bulk-order-form">
+                        <h4>Request Bulk Quote</h4>
+                        <input type="text" name="company" placeholder="Company Name" required>
+                        <input type="text" name="contact-person" placeholder="Contact Person" required>
+                        <input type="email" name="email" placeholder="Email Address" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
+                        <select name="product category" 
+                            <option value="">Select Product Category</option>
+                            <option value="desktops">Desktop Computers</option>
+                            <option value="components">Components</option>
+                            <option value="peripherals">Peripherals</option>
+                            <option value="servers">Servers</option>
+                            <option value="mixed">Mixed Products</option>
+                        </select>
+                        <input type="number" name="quantity" placeholder="Estimated Quantity" min="10" required>
+                        <textarea name="requirements" placeholder="Specific Requirements" rows="4"></textarea>
+                        <button type="submit" class="btn-primary">Request Quote</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </main>
+    
+    <!-- Spacer to ensure footer is at bottom -->
+    <div style="height: 100px; clear: both; width: 100%; background: transparent; position: relative; z-index: 3;"></div>
+
+    <!-- Footer -->
+    <section id="blog" class="blog-section">
+        <div class="container">
+            <h2 class="section-title">Tech Blog & Updates</h2>
+            <div class="blog-content">
+                <div class="blog-posts">
+                    <div class="blog-post">
+                        <div class="post-image">
+                            <i class="fab fa-facebook"></i>
+                        </div>
+                        <div class="post-content">
+                            <h4>Latest Facebook Updates</h4>
+                            <p>Stay updated with our latest posts and product announcements...</p>
+                            <a href="https://facebook.com" target="_blank" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                    <div class="blog-post">
+                        <div class="post-image">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div class="post-content">
+                            <h4>Tech Reviews & Tutorials</h4>
+                            <p>Watch our latest video reviews and tech tutorials on YouTube...</p>
+                            <a href="https://www.youtube.com/@computersolution.25" target="_blank" class="read-more">Watch Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="youtube-section">
+                    <h3>Latest Videos</h3>
+                    <div class="video-grid">
+                        <div class="video-card">
+                            <div class="video-thumbnail">
+                                <i class="fab fa-youtube"></i>
+                                <div class="play-button"><i class="fas fa-play"></i></div>
+                            </div>
+                            <h5>Computer Building Guide 2024</h5>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-thumbnail">
+                                <i class="fab fa-youtube"></i>
+                                <div class="play-button"><i class="fas fa-play"></i></div>
+                            </div>
+                            <h5>Best Graphics Cards Review</h5>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-thumbnail">
+                                <i class="fab fa-youtube"></i>
+                                <div class="play-button"><i class="fas fa-play"></i></div>
+                            </div>
+                            <h5>Gaming Setup Tutorial</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Call Us</h4>
+                            <p>+91 99194 24955</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email Us</h4>
+                            <p>info@computersolution.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Visit Us</h4>
+                            <p>Computer Solution Store<br>Naza Market, Lucknow<br>Uttar Pradesh 226001</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p>+91 99194 24955</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <h4>Send us a Message</h4>
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="tel" name="phone" placeholder="Your Phone" required>
+                        <select name="subject" required>
+                            <option value="">Select Subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="support">Technical Support</option>
+                            <option value="bulk">Bulk Orders</option>
+                            <option value="warranty">Warranty Claim</option>
+                        </select>
+                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit" class="btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Modal -->
+    <div class="payment-modal" id="payment-modal">
+        <div class="payment-content">
+            <div class="payment-header">
+                <h3>Payment Gateway</h3>
+                <button class="close-payment" id="close-payment">&times;</button>
+            </div>
+            <div class="payment-options">
+                <div class="payment-method" data-method="card">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Credit/Debit Card</span>
+                </div>
+                <div class="payment-method" data-method="upi">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>UPI Payment</span>
+                </div>
+            </div>
+            <div class="payment-form" id="card-form">
+                <h4>Card Payment</h4>
+                <input type="text" placeholder="Card Number">
+                <div class="card-row">
+                    <input type="text" placeholder="MM/YY">
+                    <input type="text" placeholder="CVV">
+                </div>
+                <input type="text" placeholder="Cardholder Name">
+                <button class="btn-primary">Pay Now</button>
+            </div>
+            <div class="payment-form" id="upi-form" style="display: none;">
+                <h4>UPI Payment</h4>
+                <p>Scan QR code or use UPI ID</p>
+                <div class="upi-options">
+                    <div class="upi-app" data-app="gpay">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiM0Mjg1RjQiLz4KPHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+CjxwYXRoIGQ9Ik04IDEyTDE2IDEyIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiLz4KPC9zdmc+Cjwvc3ZnPg==" alt="GPay">
+                        <span>Google Pay</span>
+                    </div>
+                    <div class="upi-app" data-app="paytm">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiMwMEJBRkYiLz4KPC9zdmc+" alt="Paytm">
+                        <span>Paytm</span>
+                    </div>
+                    <div class="upi-app" data-app="phonepe">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiM1RjI1OUYiLz4KPC9zdmc+" alt="PhonePe">
+                        <span>PhonePe</span>
+                    </div>
+                </div>
+                <input type="text" placeholder="Enter UPI ID (optional)">
+                <button class="btn-primary">Pay with UPI</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-desktop"></i> Computer Solution</h3>
+                    <p style="font-size: 0.9rem; line-height: 1.4;">Premium computing solutions at competitive prices.</p>
+                    <div class="footer-stats" style="margin-top: 15px;">
+                        <small style="color: #87CEEB; font-size: 0.8rem;">🏆 Best in Lucknow • 📦 Free Delivery</small>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#bulk-orders">Bulk Orders</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><i class="fas fa-phone" style="color: #4A90E2;"></i> +91 99194 24955</li>
+                        <li><i class="fas fa-envelope" style="color: #4A90E2;"></i> info@computersolution.com</li>
+                        <li><i class="fas fa-map-marker-alt" style="color: #4A90E2;"></i> Naza Market, Lucknow</li>
+                    </ul>
+                    <small style="color: #87CEEB; font-size: 0.8rem;">🕒 Mon-Sat 10AM-8PM</small>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.youtube.com/@computersolution.25"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Computer Solution. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/3d-effects.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>

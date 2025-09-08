@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login - Computer Solution</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      font-family: "Rajdhani", sans-serif;
+    }
+
+    .login-container {
+      background: rgba(30, 41, 59, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 40px;
+      width: 400px;
+      max-width: 90%;
+      border: 1px solid rgba(74, 144, 226, 0.3);
+      box-shadow: 0 20px 40px rgba(30, 58, 138, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(
+        135deg,
+        #87ceeb 0%,
+        #4a90e2 50%,
+        #2e5ccc 100%
+      );
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .login-header h1 {
+      font-family: "Orbitron", monospace;
+      font-size: 2rem;
+      background: linear-gradient(
+        135deg,
+        #87ceeb 0%,
+        #4a90e2 50%,
+        #2e5ccc 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .login-header p {
+      color: #87ceeb;
+      font-size: 1.1rem;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      color: #87ceeb;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgba(51, 65, 85, 0.8);
+      border: 1px solid rgba(74, 144, 226, 0.3);
+      border-radius: 10px;
+      color: #f8fafc;
+      font-size: 1rem;
+      font-family: "Rajdhani", sans-serif;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-sizing: border-box;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #4a90e2;
+      background: rgba(74, 144, 226, 0.1);
+      box-shadow: 0 0 20px rgba(74, 144, 226, 0.3);
+    }
+
+    .form-group i {
+      position: absolute;
+      right: 15px;
+      top: 38px;
+      color: #4a90e2;
+    }
+
+    .login-btn {
+      background: linear-gradient(
+        135deg,
+        #87ceeb 0%,
+        #4a90e2 50%,
+        #2e5ccc 100%
+      );
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      font-family: "Rajdhani", sans-serif;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-top: 10px;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(74, 144, 226, 0.4);
+    }
+
+    .login-btn:active {
+      transform: translateY(0);
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .back-link a {
+      color: #4a90e2;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .back-link a:hover {
+      color: #87ceeb;
+    }
+
+    .error-message {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: none;
+      font-size: 0.9rem;
+    }
+
+    .loading {
+      display: none;
+      text-align: center;
+      color: #4a90e2;
+      margin-top: 10px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-header">
+      <h1><i class="fas fa-user-shield"></i> Admin Panel</h1>
+      <p>Computer Solution Dashboard</p>
+    </div>
+
+    <div class="error-message" id="error-message">
+      <i class="fas fa-exclamation-circle"></i>
+      <span id="error-text">Invalid credentials. Please try again.</span>
+    </div>
+
+    <form class="login-form" id="login-form">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Enter your username"
+          required
+        />
+        <i class="fas fa-user"></i>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          required
+        />
+        <i class="fas fa-lock"></i>
+      </div>
+
+      <button type="submit" class="login-btn" id="login-btn">
+        <i class="fas fa-sign-in-alt"></i> Login to Dashboard
+      </button>
+
+      <div class="loading" id="loading">
+        <i class="fas fa-spinner fa-spin"></i> Authenticating...
+      </div>
+    </form>
+
+    <div class="back-link">
+      <a href="../index.html"><i class="fas fa-arrow-left"></i> Back to Website</a>
+    </div>
+  </div>
+
+  <script>
+    class AdminLogin {
+      constructor() {
+        this.correctUsername = "desktop123";
+        this.correctPassword = "226021";
+        this.init();
+      }
+
+      init() {
+        this.bindEvents();
+        this.checkExistingSession();
+      }
+
+      bindEvents() {
+        const loginForm = document.getElementById("login-form");
+        const usernameInput = document.getElementById("username");
+        const passwordInput = document.getElementById("password");
+
+        loginForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          this.handleLogin();
+        });
+      }
+
+      checkExistingSession() {
+        const adminSession = localStorage.getItem("adminSession");
+        if (adminSession) {
+          const session = JSON.parse(adminSession);
+          const now = new Date().getTime();
+
+          // Session valid for 4 hours
+          if (now - session.timestamp < 4 * 60 * 60 * 1000) {
+            this.redirectToDashboard();
+          } else {
+            localStorage.removeItem("adminSession");
+          }
+        }
+      }
+
+      handleLogin() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const errorMessage = document.getElementById("error-message");
+        const loading = document.getElementById("loading");
+        const loginBtn = document.getElementById("login-btn");
+
+        // Hide error message
+        errorMessage.style.display = "none";
+
+        // Show loading
+        loading.style.display = "block";
+        loginBtn.disabled = true;
+
+        setTimeout(() => {
+          if (
+            username === this.correctUsername &&
+            password === this.correctPassword
+          ) {
+            this.loginSuccess();
+          } else {
+            this.loginFailure();
+          }
+
+          loading.style.display = "none";
+          loginBtn.disabled = false;
+        }, 1500);
+      }
+
+      loginSuccess() {
+        const session = {
+          username: this.correctUsername,
+          timestamp: new Date().getTime(),
+          sessionId: this.generateSessionId(),
+        };
+
+        localStorage.setItem("adminSession", JSON.stringify(session));
+        this.showNotification(
+          "Login successful! Redirecting to dashboard...",
+          "success"
+        );
+
+        setTimeout(() => {
+          this.redirectToDashboard();
+        }, 2000);
+      }
+
+      loginFailure() {
+        const errorMessage = document.getElementById("error-message");
+        errorMessage.style.display = "block";
+        document.getElementById("password").value = "";
+        document.getElementById("password").focus();
+      }
+
+      redirectToDashboard() {
+        window.location.href = "dashboard.html";
+      }
+
+      generateSessionId() {
+        return (
+          Math.random().toString(36).substring(2) +
+          Date.now().toString(36)
+        );
+      }
+
+      showNotification(message, type) {
+        const notification = document.createElement("div");
+        notification.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: ${
+            type === "success"
+              ? "linear-gradient(135deg, #10B981, #059669)"
+              : "linear-gradient(135deg, #EF4444, #DC2626)"
+          };
+          color: white;
+          padding: 15px 20px;
+          border-radius: 10px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+          z-index: 10000;
+          font-family: 'Rajdhani', sans-serif;
+          backdrop-filter: blur(15px);
+          animation: slideInRight 0.3s ease-out;
+        `;
+
+        notification.innerHTML = `
+          <i class="fas ${
+            type === "success" ? "fa-check-circle" : "fa-exclamation-circle"
+          }"></i>
+          <span style="margin-left: 10px;">${message}</span>
+        `;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+          notification.style.animation = "slideOutRight 0.3s ease-in";
+          setTimeout(() => notification.remove(), 300);
+        }, 3000);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      new AdminLogin();
+    });
+
+    const style = document.createElement("style");
+    style.textContent = `
+      @keyframes slideInRight {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideOutRight {
+        from {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
